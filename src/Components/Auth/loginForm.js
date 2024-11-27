@@ -3,14 +3,20 @@ import React from 'react'
 const loginForm = 
 (
     {
-        togglePasswordVisibility,
         handleInputChange,
         handleLogin,
         loginData,
-        loading
+        loading,
+        togglePasswordVisibility,
+        toggleForgotPassword,
     }) => {
+        const handleLoginClick = (e) => {
+            e.preventDefault();
+            handleLogin(e);
+        };
+
   return (
-    <form onSubmit={handleLogin} className='sign-in-form'>
+    <form onSubmit={handleLoginClick} className='sign-in-form'>
         <h2 className='title'>Iniciar sesion</h2>
         <div className='input-field'>
             <i className='fas fa-envelope'></i>
@@ -19,7 +25,7 @@ const loginForm =
                 id='correo'                 
                 name='correo'
                 value={loginData.correo}
-                onChange={handleInputChange}
+                onChange={(e) => handleInputChange(e)}
                 placeholder='Correo electronico'
                 required
             />
@@ -34,11 +40,12 @@ const loginForm =
                 id='contrasena'
                 name='contrasena'
                 value={loginData.contrasena}
-                onChange={handleInputChange}
+                onChange={(e) => handleInputChange(e)}
                 placeholder='Contraseña'
                 required
             />
         </div>
+        {/* BOTON INICIO DE SESION */}
         <button 
             type='submit'
             className='btn btn solid'
@@ -47,6 +54,15 @@ const loginForm =
         >
           {loading ? "Cargando..." : "Iniciar sesion"}
         </button>
+        {/* Enlace para "¿Olvidaste tu contraseña?" */}
+        <button
+            type="button"
+            className="forgot-password-link"
+            onClick={toggleForgotPassword}
+        >
+            ¿Olvidaste tu contraseña?
+        </button>
+
         <p className='social-text'>Conoce mas de nosotros:</p>
         <div className='social-media'>
             <a href='#' className='social-icon'>

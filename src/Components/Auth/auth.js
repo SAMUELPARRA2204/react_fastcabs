@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Logo from '../../assets/img/logo.png';
 import api from '../../utils/axiosConfig';
@@ -7,6 +7,7 @@ import LoginForm from './loginForm';
 import RegisterForm from './registerForm';
 import RegisterDialog from './registerDialog';
 import LoginDialog from './loginDialog';
+import ForgotPasswordForm from './forgotPasswordForm';
 
 
 
@@ -14,8 +15,14 @@ import LoginDialog from './loginDialog';
 const Auth = () => {
 
     const[isSignUp, setIsSignUp] = useState(false);
+    const [isForgotPassword, setIsForgotPassword] = useState(false);
+    const navigate = useNavigate();
 
+    /* ESTADOS*/
+    
+    // LOGIN
     const [loginData, setLoginData] = useState ({ correo: "", contrasena: ""});
+    // REGISTER
     const [registerData, setRegisterData] = useState
     ({
         numeroDocumento: "",
@@ -25,9 +32,12 @@ const Auth = () => {
         correoRegistro: "",
         contrasenaRegistro: ""  
     });
-
+    // RECUPERAR CONTRSEÑA
+    const [emailData, setEmailData] = useState('');
+    // BOTON LOADING
     const [loading, setLoading] = useState(false)
 
+    /*FUNCIONES*/
     const handleInputChange = (e,setData) => {
         const { name, value } = e.target;
         setData((prevData) => ({
@@ -36,7 +46,7 @@ const Auth = () => {
         }));
     };
 
-
+    // ENVIO DATOS DEL LOGIN
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true)
@@ -48,11 +58,7 @@ const Auth = () => {
         });
 
         try{
-            const response = await api.post("/auth/login", {
-                correo: loginData.correo,
-                contrasena: loginData.contrasena
-            });
-
+            const response = await api.post("/auth/login",loginData); 
             const data = response.data;
             
             //BORRAR
@@ -69,7 +75,7 @@ const Auth = () => {
                     timer: 1500,
                     timerProgressBar: true,
                 }).then(() => {
-                    window.location.href = '/';
+                    navigate('/')
                 });
             }else{
                 Swal.fire({
@@ -81,21 +87,24 @@ const Auth = () => {
         } catch (error) {
 
             if(error.response){
-                const status = error.response.status;
-                const message = error.response.data?.message || 'Ocurrio un error inesperado';
+                const { status, data }  = error.response;
+                const message = data?.message || 'Ocurrio un error inesperado';
 
-                if(status === 401){
+                switch (status) {
+                    case 401:
                     Swal.fire({
                         icon: 'error',
                         title: 'Error de autenticación',
                         text: 'Las credenciales no son válidas. Por favor, inténtalo de nuevo.',
                     });
-                } else if (status === 404){
+                    break;
+                    case 404:
                     Swal.fire({
                         icon: 'error',
                         title: 'Usuario no encontrado',
-                    });    
-                } else {
+                    });
+                    break;
+                    default:
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
@@ -103,17 +112,51 @@ const Auth = () => {
                     });
                 }
             } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Hubo un problema con la autenticación. Intenta de nuevo más tarde.',
-                    });
-                }
-            } finally {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema con la autenticación. Intenta de nuevo más tarde.',
+                });
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // ENVIO DE RECUPERAR CONTRASENA 
+    const handleForgotPassword = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try{
+            const response = await api.post('/auth/recuperar', {correo: emailData.correo});
+            const data = response.data;
+
+            if (data.status === 'success') {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Código enviado',
+                  text: 'Revisa tu correo para el código de recuperación.',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.message || 'Ocurrió un error.',
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo procesar la solicitud. Intenta más tarde.',
+            });
+        } finally {
             setLoading(false)
         }
     };
 
+    // ENVIO DATOS DE REGISTRO CLIENTE
     const handleRegister = async (e) => {
         e.preventDefault();
         setLoading(true)
@@ -123,32 +166,29 @@ const Auth = () => {
             registerData
         });
 
-        const response = await api.post("/usuarios/registerCliente",{
-            numeroDocumento: registerData.numeroDocumento,
-            nombre: registerData.nombre,
-            apellido: registerData.apellido,
-            celular: registerData.celular,
-            correo: registerData.correoRegistro,
-            contrasena: registerData.contrasenaRegistro
-        });
+        try{
+            const response = await api.post("/usuarios/registerCliente",{
+                numeroDocumento: registerData.numeroDocumento,
+                nombre: registerData.nombre,
+                apellido: registerData.apellido,
+                celular: registerData.celular,
+                correo: registerData.correoRegistro,
+                contrasena: registerData.contrasenaRegistro
+            });
 
-        // try{
-        //     // const response = await api.post("/api/usuarios/registerCliente",{
-        //     //     registerData
-        //     // });
+            // BORRAR
+            console.log("Respuesta del servidor:", response.data);
 
-        //     console.log("Respuesta del servidor:", response.data);
-
-        // } catch (error) {
-        //     console.error("Error en el registro: ", error.message);
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'Error',
-        //         text: 'Las credenciales no son validas. Por favor, intentalo de nuevo.',
-        //     });
-        // } finally {
-        //     setLoading(false)
-        // }
+        } catch (error) {
+            console.error("Error en el registro: ", error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Las credenciales no son validas. Por favor, intentalo de nuevo.',
+            });
+        } finally {
+            setLoading(false)
+        }
     }
 
     const togglePasswordVisibility = (inputId) => {
@@ -162,41 +202,61 @@ const Auth = () => {
 
     const handleSignUpClick = () => {
         setIsSignUp(true);
+        setIsForgotPassword(false)
     };
 
     const handleSignInClick = () => {
         setIsSignUp(false)
+        setIsForgotPassword(false)
     };
 
+    const toggleForgotPassword = () => {
+        setIsForgotPassword(!isForgotPassword);
+    }
+
   return (
-    <div className={`container1 ${isSignUp ? 'sign-up-mode' : ''}`}>
-        <div className='forms-cotainer'>
-            <div className='signin-signup'>
-                {/* FORMULARIO INICIO DE SESION */}
-                <LoginForm 
-                    togglePasswordVisibility={togglePasswordVisibility}
-                    handleInputChange={(e) => handleInputChange(e,setLoginData)}
-                    handleLogin={handleLogin}
-                    loginData={loginData}
-                    loading={loading}
-                />
-                {/* FORMULARIO REGISTRO USUARIO CLIENTE */}
-                <RegisterForm togglePasswordVisibility={togglePasswordVisibility}
-                    handleInputChange={(e) => handleInputChange(e,setRegisterData)}
-                    handleRegister={handleRegister}
-                    registerData={registerData}
-                    loading={loading}
-                 />
+        <div className={`container1 ${isSignUp ? 'sign-up-mode' : ''}`}>
+            <div className='forms-container'>
+                <div className='signin-signup'>
+                    {/* FORMULARIO INICIO DE SESION */}
+                    {!isSignUp && !isForgotPassword && (
+                        <LoginForm 
+                        togglePasswordVisibility={togglePasswordVisibility}
+                        handleInputChange={(e) => handleInputChange(e,setLoginData)}
+                        handleLogin={handleLogin}
+                        loginData={loginData}
+                        loading={loading}
+                        toggleForgotPassword={toggleForgotPassword}
+                    />
+                    )}
+                    {isSignUp && (
+                        <RegisterForm togglePasswordVisibility={togglePasswordVisibility}
+                        handleInputChange={(e) => handleInputChange(e,setRegisterData)}
+                        handleRegister={handleRegister}
+                        registerData={registerData}
+                        loading={loading}
+                    />
+                    )}
+
+                    {isForgotPassword && (
+                        <ForgotPasswordForm 
+                        toggleForgotPassword ={toggleForgotPassword}
+                        handleInputChange={(e) => handleInputChange(e,setEmailData)}
+                        handleForgotPassword={handleForgotPassword}
+                        emailData={emailData}
+                        loading={loading}
+                    />
+                    )}
+                </div>
+            </div>
+            <div className='panels-container'>
+                {/* DIALOGO REGISTRAR */}
+                <RegisterDialog onClick={handleSignUpClick} />
+                {/* DIALOGO INICIO SESION */}
+                <LoginDialog onClick={handleSignInClick}/>
             </div>
         </div>
-        <div className='panels-container'>
-            {/* DIALOGO REGISTRAR */}
-            <RegisterDialog onClick={handleSignUpClick} />
-            {/* DIALOGO INICIO SESION */}
-            <LoginDialog onClick={handleSignInClick}/>
-        </div>
-    </div>
-  )
+    )
 }
 
 export default Auth

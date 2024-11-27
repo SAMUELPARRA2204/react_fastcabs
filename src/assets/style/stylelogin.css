@@ -214,6 +214,25 @@ form.sign-in-form {
 .right-panel .content {
   transform: translateX(800px);
 }
+
+/*RECORDAR CONTRASENA*/
+
+/*link*/
+.forgot-password-link {
+  background: none; 
+  border: none;
+  color: #000; 
+  font-size: 1rem; 
+  text-decoration: none; 
+  cursor: pointer; 
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline; 
+  color: #c7a17a; 
+}
+
 /* ANIMATION */
 .container1.sign-up-mode:before {
   transform: translate(100%, -50%);
@@ -244,6 +263,7 @@ form.sign-in-form {
 .container1.sign-up-mode .right-panel {
   pointer-events: all;
 }
+
 @media (max-width: 870px) {
   .container1 {
     min-height: 800px;

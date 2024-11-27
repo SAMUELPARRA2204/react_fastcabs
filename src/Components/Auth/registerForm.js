@@ -3,14 +3,18 @@ import React from 'react'
 const registerForm = 
 (
     {
-        togglePasswordVisibility,
         handleInputChange,
         handleRegister,
         registerData,
-        loading
+        loading,
+        togglePasswordVisibility,        
     }) => {
+        const handleRegisterClick = (e) =>{
+            e.preventDefault();
+            handleRegister(e)
+        }
   return (
-    <form onSubmit={handleRegister} className='sign-up-form'>
+    <form onSubmit={handleRegisterClick} className='sign-up-form'>
         <h2 className='title'>Registrarse</h2>
         <div className='input-field'>
             <i className='fas fa-hashtag'></i>
