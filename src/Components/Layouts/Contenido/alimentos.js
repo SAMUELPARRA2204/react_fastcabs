@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useCart } from '../../../context/CartContext';
+import { useCart } from '../../../Context/CartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye as regularEye } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';

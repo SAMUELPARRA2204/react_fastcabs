@@ -1,8 +1,7 @@
 import React from 'react'
 import Header from './Layouts/Dashboard/header';
 import Main from './Layouts/Dashboard/main';
-
-import '../style/styleDashboard.css';
+import '../assets/style/styleDashboard.css';
 
 
 const Dashboard = () => {

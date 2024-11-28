@@ -1,22 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&display=swap");
 
-* {
+.login-container {
   font-family: "Ubuntu", sans-serif;
+  font-size: unset;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body, input {
-  font-family: "Poppins", sans-serif;
-}
-
-.container1 {
   position: relative;
   width: 100%;
   background-color: #fff;
   min-height: 100vh;
   overflow: hidden;
+}
+
+.login-container * {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: unset;
 }
 
 .forms-container {
@@ -175,7 +178,7 @@ form.sign-in-form {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.container1:before {
+.login-container:before {
   content: "";
   position: absolute;
   height: 2000px;
@@ -265,38 +268,38 @@ form.sign-in-form {
 }
 
 /* ANIMATION */
-.container1.sign-up-mode:before {
+.login-container.sign-up-mode:before {
   transform: translate(100%, -50%);
   right: 52%;
 }
-.container1.sign-up-mode .left-panel .image,
-.container1.sign-up-mode .left-panel .content {
+.login-container.sign-up-mode .left-panel .image,
+.login-container.sign-up-mode .left-panel .content {
   transform: translateX(-800px);
 }
-.container1.sign-up-mode .signin-signup {
+.login-container.sign-up-mode .signin-signup {
   left: 25%;
 }
-.container1.sign-up-mode form.sign-up-form {
+.login-container.sign-up-mode form.sign-up-form {
   opacity: 1;
   z-index: 2;
 }
-.container1.sign-up-mode form.sign-in-form {
+.login-container.sign-up-mode form.sign-in-form {
   opacity: 0;
   z-index: 1;
 }
-.container1.sign-up-mode .right-panel .image,
-.container1.sign-up-mode .right-panel .content {
+.login-container.sign-up-mode .right-panel .image,
+.login-container.sign-up-mode .right-panel .content {
   transform: translateX(0%);
 }
-.container1.sign-up-mode .left-panel {
+.login-container.sign-up-mode .left-panel {
   pointer-events: none;
 }
-.container1.sign-up-mode .right-panel {
+.login-container.sign-up-mode .right-panel {
   pointer-events: all;
 }
 
 @media (max-width: 870px) {
-  .container1 {
+  .login-container {
     min-height: 800px;
     height: 100vh;
   }
@@ -307,7 +310,7 @@ form.sign-in-form {
     transition: 1s 0.8s ease-in-out;
   }
   .signin-signup,
-  .container1.sign-up-mode .signin-signup {
+  .login-container.sign-up-mode .signin-signup {
     left: 50%;
   }
   .panels-container {
@@ -349,7 +352,7 @@ form.sign-in-form {
     height: 35px;
     font-size: 0.7rem;
   }
-  .container1:before {
+  .login-container:before {
     width: 1500px;
     height: 1500px;
     transform: translateX(-50%);
@@ -359,24 +362,24 @@ form.sign-in-form {
     top: initial;
     transition: 2s ease-in-out;
   }
-  .container1.sign-up-mode:before {
+  .login-container.sign-up-mode:before {
     transform: translate(-50%, 100%);
     bottom: 32%;
     right: initial;
   }
-  .container1.sign-up-mode .left-panel .image,
-  .container1.sign-up-mode .left-panel .content {
+  .login-container.sign-up-mode .left-panel .image,
+  .login-container.sign-up-mode .left-panel .content {
     transform: translateY(-300px);
   }
-  .container1.sign-up-mode .right-panel .image,
-  .container1.sign-up-mode .right-panel .content {
+  .login-container.sign-up-mode .right-panel .image,
+  .login-container.sign-up-mode .right-panel .content {
     transform: translateY(0px);
   }
   .right-panel .image,
   .right-panel .content {
     transform: translateY(300px);
   }
-  .container1.sign-up-mode .signin-signup {
+  .login-container.sign-up-mode .signin-signup {
     top: 5%;
     transform: translate(-50%, 0);
   }
@@ -391,14 +394,14 @@ form.sign-in-form {
   .panel .content {
     padding: 0.5rem 1rem;
   }
-  .container1 {
+  .login-container {
     padding: 1.5rem;
   }
-  .container1:before {
+  .login-container:before {
     bottom: 72%;
     left: 50%;
   }
-  .container1.sign-up-mode:before {
+  .login-container.sign-up-mode:before {
     bottom: 28%;
     left: 50%;
   }

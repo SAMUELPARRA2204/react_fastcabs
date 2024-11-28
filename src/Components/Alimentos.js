@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Home/header';
+import Header from './Home/Header';
 import Alimento from './Layouts/Contenido/alimentos';
-import Footer from './Home/footer';
+import Footer from './Home/Footer';
 
 const Alimentos = () => {
   return (

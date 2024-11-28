@@ -1,7 +1,6 @@
 import React from 'react';
-import Auth from '../Components/Auth/auth';
-// import '../assets/style/stylelogin.css';
-import '../assets/style/auth.css';
+import Auth from '../Components/Auth/BaseAuth';
+import '../assets/style/stylelogin.css';
 
 const Login = () =>{
   return (
@@ -10,3 +9,4 @@ const Login = () =>{
 }
 
 export default Login;
+  

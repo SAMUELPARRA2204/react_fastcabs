@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useUserContext } from '../../Context/UserContext';
 import Logo from '../../assets/img/logo.png';
-import api from '../../utils/axiosConfig';
-import LoginForm from './loginForm';
-import RegisterForm from './registerForm';
-import RegisterDialog from './registerDialog';
-import LoginDialog from './loginDialog';
-import ForgotPasswordForm from './forgotPasswordForm';
+import api from '../../Utils/axiosConfig';
+
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
+import RegisterDialog from './RegisterDialog';
+import LoginDialog from './LoginDialog';
+import ForgotPasswordForm from './ForgotPasswordForm';
 
 
 
@@ -18,6 +20,7 @@ const Auth = () => {
     const [isForgotPassword, setIsForgotPassword] = useState(false);
     const navigate = useNavigate();
 
+    const { loginUser } = useUserContext();
     /* ESTADOS*/
     
     // LOGIN
@@ -64,7 +67,7 @@ const Auth = () => {
             //BORRAR
             console.log("Respuesta del servidor: ", data);
 
-            if(data.status ==="success"){
+            if(data.status === "success" && (data.rol === 1 || data.rol === 2)){
                 Swal.fire({
                     title: `Bienvenido, ${data.nombre}`,
                     text: 'Bienvenido a Fastcabs, disfruta de tu viaje.',
@@ -75,9 +78,37 @@ const Auth = () => {
                     timer: 1500,
                     timerProgressBar: true,
                 }).then(() => {
-                    navigate('/')
+                    loginUser({ nombre: data.nombre, rol: data.rol});
+                    navigate('/Dashboard',{
+                        state: {
+                            nombre: data.nombre,
+                            rol: data.rol
+                        }
+                    });
                 });
-            }else{
+            } else if (data.status === "success" && data.rol === 3){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Inició sesión exitosamente',
+                }).then(() => {                    
+                    navigate('/',{
+                        state: {
+                            nombre: data.nombre,
+                        },
+                    });
+                });
+            } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
@@ -138,11 +169,17 @@ const Auth = () => {
                   title: 'Código enviado',
                   text: 'Revisa tu correo para el código de recuperación.',
                 });
+            } else if (data.status === 'error' && data.message === 'Se han generado demasiados códigos. Inténtelo más tarde.'){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Damasiados intentos',
+                    text: 'Has alcanzado el límite de intentos. Inténtalo más tarde.',
+                });
             } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data.message || 'Ocurrió un error.',
+                    text: data.message || 'Ocurrió un error. Intenta más tarde.',
                 });
             }
         } catch (error) {
@@ -215,7 +252,7 @@ const Auth = () => {
     }
 
   return (
-        <div className={`container1 ${isSignUp ? 'sign-up-mode' : ''}`}>
+        <div className={`login-container ${isSignUp ? 'sign-up-mode' : ''}`}>
             <div className='forms-container'>
                 <div className='signin-signup'>
                     {/* FORMULARIO INICIO DE SESION */}

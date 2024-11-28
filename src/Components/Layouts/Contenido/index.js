@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../../../context/CartContext';
+import { useCart } from '../../../Context/CartContext';
 
 const CardFeature = ({ icon, title, description }) => (
   <div className="card-feature">

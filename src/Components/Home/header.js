@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../../context/CartContext';
-
+import { useCart } from '../../Context/CartContext';
 
 
 const Header = () => {
@@ -38,24 +37,24 @@ const Header = () => {
 
   return (
     <header>
-      <div className="custom-hero">
-        <div className="custom-hero">
-          <div className="custom-support-client">
+      <div className="container-hero">
+        <div className="container hero">
+          <div className="customer-support">
             <i className="fa-solid fa-headset"></i>
-            <div className="custom-contenido-support-client">
+            <div className="content-customer-support">
               <span className="text">Soporte al cliente</span>
               <span className="number">123-456-7890</span>
             </div>
           </div>
           {/* CONTENEDOR LOGO */}
-          <div className="custom-logo-contenedor">
+          <div className="container-logo">
             <i className="fa-solid fa-cart-plus"></i>
             <h1 className="logo">
               <a href="/">Fastcabs</a>
             </h1>
           </div>
           {/* CONTENEDOR CARRITO */}
-          <div className="custom-user-container">
+          <div className="container-user">
             <Link to="/login" target="_parent" rel="noopener noreferrer">
               <i className="fa-solid fa-user"></i>
             </Link>
@@ -107,7 +106,7 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className="custom-content-shopping-cart">
+            <div className="content-shopping-cart">
               <span className="text">Compras</span>
               <span className="number">({cart.length})</span>
             </div>
@@ -115,10 +114,10 @@ const Header = () => {
         </div>
       </div>
       {/* BARRA DE NEVEGACION */}
-      <div className="custom-container-navbar">
-        <nav className="custom-navbar">
+      <div className="container-navbar">
+        <nav className="navbar container">
           <i className="fa-solid fa-bars"></i>
-          <ul className="custom-menu">
+          <ul className="menu">
             <li>
               <Link to="/">Inicio</Link>
             </li>
@@ -142,7 +141,7 @@ const Header = () => {
             </li>
           </ul>
           {/* BARRA DE BUSQUEDA */}
-          <div className="custom-search-form">
+          <div className="search-form">
               <input type="search" placeholder="Buscar..." />
               <button className="btn-search">
                   <i className="fa-solid fa-magnifying-glass"></i>

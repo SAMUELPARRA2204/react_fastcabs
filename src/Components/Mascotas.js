@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Home/header';
+import Header from './Home/Header';
 import Mascota from './Layouts/Contenido/mascotas';
-import Footer from './Home/footer';
+import Footer from './Home/Footer';
 
 const Mascotas = () => {
   return (

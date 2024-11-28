@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Home/header';
+import Header from './Home/Header';
 import AseoPersonal from './Layouts/Contenido/aseo_personal';
-import Footer from './Home/footer';
+import Footer from './Home/Footer';
 
 const Aseo_Personal = () => {
   return (
