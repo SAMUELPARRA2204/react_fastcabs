@@ -9,6 +9,11 @@ import Limpieza_Hogar from '../Components/Limpieza_Hogar';
 import Aseo_Personal from '../Components/Aseo_Personal';
 import Mascotas from '../Components/Mascotas';
 import Frutas_Verduras from '../Components/Frutas_Verduras';
+import Inicio from '../Components/Dashboard/layouts/Inicio';
+import Proveedor from '../Components/Dashboard/layouts/Proveedor';
+import Productos from '../Components/Dashboard/layouts/Productos';
+import Pedidos from '../Components/Dashboard/layouts/Pedidos';
+import Usuarios from '../Components/Dashboard/layouts/Usuarios';
 
 const AppRoutes = () => {
   return (
@@ -27,8 +32,12 @@ const AppRoutes = () => {
         
         {/* RUTAS DEL DASHBOARD */}
         <Route path='/Dashboard' element={<Dashboard />}>
-            <Route path='Inicio' element={<Alimentos />} />
-            <Route path='Proveedor' element={<Congelados />} />
+            <Route index element={<Inicio />} />
+            <Route path='Inicio' element={<Inicio />} />
+            <Route path='Proveedor' element={<Proveedor />} />
+            <Route path='Productos' element={<Productos />} />
+            <Route path='Pedidos' element={<Pedidos />} />
+            <Route path='Usuarios' element={<Usuarios />} />
         </Route>
     </Routes>
   )

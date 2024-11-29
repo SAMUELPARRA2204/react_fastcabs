@@ -1,4 +1,5 @@
 import React from 'react'
+import style from '../../assets/style/Login.module.css';
 
 const registerForm = 
 (
@@ -14,9 +15,9 @@ const registerForm =
             handleRegister(e)
         }
   return (
-    <form onSubmit={handleRegisterClick} className='sign-up-form'>
-        <h2 className='title'>Registrarse</h2>
-        <div className='input-field'>
+    <form onSubmit={handleRegisterClick} className={style['sign-up-form']}>
+        <h2 className={style.title}>Registrarse</h2>
+        <div className={style['input-field']}>
             <i className='fas fa-hashtag'></i>
             <input 
                 type='number'
@@ -28,7 +29,7 @@ const registerForm =
                 required
             />
         </div>
-        <div className='input-field'>
+        <div className={style['input-field']}>
             <i className='fas fa-user'></i>
             <input 
                 type='text'
@@ -41,7 +42,7 @@ const registerForm =
                 required
             />
         </div>
-        <div className='input-field'>
+        <div className={style['input-field']}>
             <i className='fas fa-user'></i>
             <input 
                 type='text'
@@ -54,7 +55,7 @@ const registerForm =
                 required
             />
         </div>
-        <div className='input-field'>
+        <div className={style['input-field']}>
             <i className='fas fa-phone'></i>
             <input 
                 type='number'
@@ -66,7 +67,7 @@ const registerForm =
                 required
             />
         </div>
-        <div className='input-field'>
+        <div className={style['input-field']}>
             <i className='fas fa-envelope'></i>
             <input 
                 type='email'
@@ -78,7 +79,7 @@ const registerForm =
                 required
             />
         </div>
-        <div className='input-field'>
+        <div className={style['input-field']}>
             <i 
                 className='fas fa-eye toggle-password'
                 onClick={() => togglePasswordVisibility('contrasenaRegistro')}
@@ -96,7 +97,7 @@ const registerForm =
         </div>
         <button
             type='submit'
-            className='btn'
+            className={style.btn}
             disabled={loading}
         >
         {loading ? "Cargando..." : "Registrarse"}    

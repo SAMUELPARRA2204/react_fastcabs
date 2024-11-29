@@ -4,6 +4,7 @@ import { IoPersonOutline, IoHomeOutline, IoGridOutline, IoCartOutline, IoBagHand
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../Context/UserContext';
+import style from '../../assets/style/Dashboard.module.css';
 
 const Navigation =({ rol, nombre }) => {
   const { logoutUser } = useUserContext();
@@ -24,81 +25,81 @@ const Navigation =({ rol, nombre }) => {
   };
 
   return (
-    <nav className='navigation'>
+    <nav className={style.navigation}>
       <ul>
         <li>
           <Link to="/Dashboard">
-            <span className="title">fastcabs</span>
+            <span className={style.title}>fastcabs</span>
           </Link>
         </li>
         <li>  
-          <Link to="/Dashboard" className="nav_link">
-            <span className="icon">
+          <Link to="/Dashboard" className={style.title}>
+            <span className={style.icon}>
               <IoPersonOutline />
             </span>
-            <span className="title">Mi perfil</span>
+            <span className={style.title}>Mi perfil</span>
           </Link>
         </li>
         {rol === 1 && (
           <>
           <li>
-            <Link to="/Dashboard/Inicio" className="nav_link">
-              <span className="icon">
+            <Link to="/Dashboard/Inicio" className={style.nav_link}>
+              <span className={style.icon}>
                 <IoHomeOutline />
               </span>
-              <span className="title">Inicio</span>
+              <span className={style.title}>Inicio</span>
             </Link>
           </li>
           <li>
-            <Link to="/Dashboard/Proveedor" className="nav_link">
-              <span className="icon">
+            <Link to="/Dashboard/Proveedor" className={style.nav_link}>
+              <span className={style.icon}>
                 <IoGridOutline />
               </span>
-              <span className="title">Proveedor</span>
+              <span className={style.title}>Proveedor</span>
             </Link>
           </li>
           <li>
-            <Link to="/Dashboard/Productos" className="nav_link">
-              <span className="icon">
+            <Link to="/Dashboard/Productos" className={style.nav_link}>
+              <span className={style.icon}>
                 <IoCartOutline />
               </span>
-              <span className="title">Productos</span>
+              <span className={style.title}>Productos</span>
             </Link>
           </li>
           <li>
-            <Link to="/Dashboard/Pedidos" className="nav_link">
-              <span className="icon">
+            <Link to="/Dashboard/Pedidos" className={style.nav_link}>
+              <span className={style.icon}>
                 <IoBagHandleOutline />
               </span>
-              <span className="title">Pedidos</span>
+              <span className={style.title}>Pedidos</span>
             </Link>
           </li>
           <li>
-            <Link to="/Dashboard/Usuarios" className="nav_link">
-              <span className="icon">
+            <Link to="/Dashboard/Usuarios" className={style.nav_link}>
+              <span className={style.icon}>
                 <IoPeopleOutline />
               </span>
-              <span className="title">Usuarios</span>
+              <span className={style.title}>Usuarios</span>
             </Link>
           </li>
           </>
         )}
         {rol === 2 && (
           <li>
-            <Link to="/Dashboard/Pedidos" className="nav_link">
-              <span className="icon">
+            <Link to="/Dashboard/Pedidos" className={style.nav_link}>
+              <span className={style.icon}>
                 <IoBagHandleOutline />
               </span>
-              <span className="title">Pedidos</span>
+              <span className={style.title}>Pedidos</span>
             </Link>
           </li>
         )}
         <li>
-          <Link to="/login" onClick={handleLogout} className="nav_link">
-            <span className="icon">
+          <Link to="/login" onClick={handleLogout} className={style.nav_link}>
+            <span className={style.icon}>
               <IoLogOutOutline />
             </span>
-            <span className="title">Salir</span>
+            <span className={style.title}>Salir</span>
           </Link>
         </li>
       </ul>

@@ -1,13 +1,14 @@
 import React from 'react';
 import NavBar from './Nav';
+import style from '../../assets/style/Dashboard.module.css';
 
 
-const header = ({ nombre, rol }) => {
+const Header = ({ nombre, rol }) => {
   return (
-    <header className='containerDashboard'>
+    <header className={style.containerDashboard}>
         <NavBar nombre={nombre} rol={rol}/>        
     </header>
   )
 }
 
-export default header
+export default Header;

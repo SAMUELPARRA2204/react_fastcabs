@@ -1,5 +1,5 @@
 import React from 'react'
-
+import style from '../../assets/style/Login.module.css';
 const loginForm = 
 (
     {
@@ -16,9 +16,9 @@ const loginForm =
         };
 
   return (
-    <form onSubmit={handleLoginClick} className='sign-in-form'>
-        <h2 className='title'>Iniciar sesion</h2>
-        <div className='input-field'>
+    <form onSubmit={handleLoginClick} className={style['sign-in-form']}>
+        <h2 className={style.title}>Iniciar sesion</h2>
+        <div className={style['input-field']}>
             <i className='fas fa-envelope'></i>
             <input 
                 type='email'
@@ -30,7 +30,7 @@ const loginForm =
                 required
             />
         </div>
-        <div className='input-field'>
+        <div className={style['input-field']}>
             <i 
                 className='fas fa-eye toggle-password'
                 onClick={() => togglePasswordVisibility('contrasena')}
@@ -48,7 +48,7 @@ const loginForm =
         {/* BOTON INICIO DE SESION */}
         <button 
             type='submit'
-            className='btn btn solid'
+            className={style.btn + " " + style.btn + " " + style.solid}
             id='botonalerta'
             disabled={loading}
         >
@@ -57,24 +57,24 @@ const loginForm =
         {/* Enlace para "¿Olvidaste tu contraseña?" */}
         <button
             type="button"
-            className="forgot-password-link"
+            className={style['forgot-password-link']}
             onClick={toggleForgotPassword}
         >
             ¿Olvidaste tu contraseña?
         </button>
 
-        <p className='social-text'>Conoce mas de nosotros:</p>
-        <div className='social-media'>
-            <a href='#' className='social-icon'>
+        <p className={style['social-text']}>Conoce mas de nosotros:</p>
+        <div className={style['social-media']}>
+            <a href='#' className={style['social-icon']}>
                 <i className='fab fa-facebook'></i>
             </a>
-            <a href='#' className='social-icon'>
+            <a href='#' className={style['social-icon']}>
                 <i className='fab fa-twitter'></i>
             </a>
-            <a href='#' className='social-icon'>
+            <a href='#' className={style['social-icon']}>
                 <i className='fab fa-instagram'></i>
             </a>
-            <a href='#' className='social-icon'>
+            <a href='#' className={style['social-icon']}>
                 <i className='fab fa-tiktok'></i>
             </a>
         </div>

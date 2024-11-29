@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Outlet  } from 'react-router-dom';
-import { IoMenuOutline, IoSearchOutline } from 'react-icons/io5';
+import { IoMenuOutline } from 'react-icons/io5';
+import style from '../../assets/style/Dashboard.module.css';
 
-const main = () => {
+const Main = () => {
     const [isMenuActive, setIsMenuActive] = useState(false);
 
     const toggleMenu = () => {
@@ -10,20 +11,20 @@ const main = () => {
     }
 
   return (
-    <main className={`main ${isMenuActive ? 'active' : ''}`}>
+    <main className={`${style.main} ${isMenuActive ? style.active : ''}`}>
         <section>
-            <div className='topbar'>
-                <div className='toggle' onClick={toggleMenu}>
+            <div className={style.topbar}>
+                <div className={style.toggle} onClick={toggleMenu}>
                     <IoMenuOutline />
                 </div>
-                <div className='search'>
+                <div className={style.search}>
                     <label>
-                        <input type='text' placeholder='Buscar' />
-                        <IoSearchOutline />
+                        <input type='search' placeholder='Buscar' />
+                        <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
-                <div className='user'>
-                    <span className='title'></span>
+                <div className={style.user}>
+                    <span className={style.title}></span>
                 </div>
             </div>
             <div>
@@ -34,4 +35,4 @@ const main = () => {
   )
 }
 
-export default main
+export default Main;

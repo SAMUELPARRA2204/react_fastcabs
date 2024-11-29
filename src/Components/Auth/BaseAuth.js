@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useUserContext } from '../../Context/UserContext';
 import Logo from '../../assets/img/logo.png';
+import style from '../../assets/style/Login.module.css';
 import api from '../../Utils/axiosConfig';
 
 import LoginForm from './LoginForm';
@@ -252,9 +253,9 @@ const Auth = () => {
     }
 
   return (
-        <div className={`login-container ${isSignUp ? 'sign-up-mode' : ''}`}>
-            <div className='forms-container'>
-                <div className='signin-signup'>
+        <div className={`${style['login-container']} ${isSignUp ? style['sign-up-mode'] : ''}`}>
+            <div className={style['forms-container']}>
+                <div className={style['signin-signup']}>
                     {/* FORMULARIO INICIO DE SESION */}
                     {!isSignUp && !isForgotPassword && (
                         <LoginForm 
@@ -286,7 +287,7 @@ const Auth = () => {
                     )}
                 </div>
             </div>
-            <div className='panels-container'>
+            <div className={style['panels-container']}>
                 {/* DIALOGO REGISTRAR */}
                 <RegisterDialog onClick={handleSignUpClick} />
                 {/* DIALOGO INICIO SESION */}

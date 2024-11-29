@@ -1,4 +1,5 @@
 import React from 'react'
+import style from '../../assets/style/Login.module.css';
 
 const forgotPasswordForm = 
 (
@@ -14,9 +15,9 @@ const forgotPasswordForm =
             handleForgotPassword(e)
         }
   return (
-    <form onSubmit={handleForgotPasswordClick} className="forgot-password-form">
+    <form onSubmit={handleForgotPasswordClick} className={style['forgot-password-form']}>
         <h2>Recuperar Contraseña</h2>
-        <div className="input-field">
+        <div className={style['input-field']}>
             <i className='fas fa-envelope'></i>
             <input
                 type="email"
@@ -28,7 +29,7 @@ const forgotPasswordForm =
                 placeholder='Correo registrado'
             />
         </div>
-        <button  className="btn" disabled={loading}>
+        <button  className={style.btn} disabled={loading}>
             {loading ? 'Enviando...' : 'Enviar código'}
         </button>
         {/* <button className="btn-secundary" type="button" onClick={(e) => {e.preventDefault(); toggleForgotPassword();}}>
