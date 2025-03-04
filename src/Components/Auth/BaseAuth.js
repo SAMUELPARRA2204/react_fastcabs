@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useUserContext } from '../../Context/UserContext';
 import Logo from '../../assets/img/logo.png';
 import style from '../../assets/style/Login.module.css';
 import api from '../../Utils/axiosConfig';
+=======
+import style from '../../assets/style/Login.module.css';
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
 
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
@@ -12,6 +16,7 @@ import RegisterDialog from './RegisterDialog';
 import LoginDialog from './LoginDialog';
 import ForgotPasswordForm from './ForgotPasswordForm';
 
+<<<<<<< HEAD
 
 
 
@@ -27,6 +32,14 @@ const Auth = () => {
     // LOGIN
     const [loginData, setLoginData] = useState ({ correo: "", contrasena: ""});
     // REGISTER
+=======
+const Auth = () => {
+    const [isSignUp, setIsSignUp] = useState(false);
+    const [isForgotPassword, setIsForgotPassword] = useState(false);
+    /*ESTADO FORMULARIOS*/
+    const [loading, setLoading] = useState(false)
+    const [loginData, setLoginData] = useState({ correo: "", contrasena: "" });
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
     const [registerData, setRegisterData] = useState
     ({
         numeroDocumento: "",
@@ -34,6 +47,7 @@ const Auth = () => {
         apellido: "",
         celular: "",
         correoRegistro: "",
+<<<<<<< HEAD
         contrasenaRegistro: ""  
     });
     // RECUPERAR CONTRSEÑA
@@ -43,12 +57,21 @@ const Auth = () => {
 
     /*FUNCIONES*/
     const handleInputChange = (e,setData) => {
+=======
+        contrasenaRegistro: ""
+    });
+    const [emailData, setEmailData] = useState('');
+    /*FUNCIONES GENERALES*/
+    // INPUT
+    const handleInputChange = (e, setData) => {
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
         const { name, value } = e.target;
         setData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
+<<<<<<< HEAD
 
     // ENVIO DATOS DEL LOGIN
     const handleLogin = async (e) => {
@@ -232,32 +255,54 @@ const Auth = () => {
     const togglePasswordVisibility = (inputId) => {
         const passwordInput = document.getElementById(inputId);
         if(passwordInput.type === 'password'){
+=======
+    // CONTRASEÑA
+    const togglePasswordVisibility = (inputId) => {
+        const passwordInput = document.getElementById(inputId);
+        if (passwordInput.type === 'password') {
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
             passwordInput.type = 'text';
         } else {
             passwordInput.type = 'password';
         }
     };
+<<<<<<< HEAD
 
+=======
+    // ANIMACION
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
     const handleSignUpClick = () => {
         setIsSignUp(true);
         setIsForgotPassword(false)
     };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
     const handleSignInClick = () => {
         setIsSignUp(false)
         setIsForgotPassword(false)
     };
+<<<<<<< HEAD
 
     const toggleForgotPassword = () => {
         setIsForgotPassword(!isForgotPassword);
     }
 
   return (
+=======
+    const toggleForgotPassword = () => {
+        setIsForgotPassword(!isForgotPassword);
+    }
+    
+    return (
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
         <div className={`${style['login-container']} ${isSignUp ? style['sign-up-mode'] : ''}`}>
             <div className={style['forms-container']}>
                 <div className={style['signin-signup']}>
                     {/* FORMULARIO INICIO DE SESION */}
                     {!isSignUp && !isForgotPassword && (
+<<<<<<< HEAD
                         <LoginForm 
                         togglePasswordVisibility={togglePasswordVisibility}
                         handleInputChange={(e) => handleInputChange(e,setLoginData)}
@@ -284,6 +329,34 @@ const Auth = () => {
                         emailData={emailData}
                         loading={loading}
                     />
+=======
+                        <LoginForm
+                            handleInputChange={(e) => handleInputChange(e, setLoginData)}
+                            loginData={loginData}
+                            loading={loading}
+                            setLoading={setLoading}
+                            togglePasswordVisibility={togglePasswordVisibility}
+                            toggleForgotPassword={toggleForgotPassword}
+                        />
+                    )}
+                    {isSignUp && (
+                        <RegisterForm 
+                            handleInputChange={(e) => handleInputChange(e, setRegisterData)}
+                            registerData={registerData}
+                            setRegisterData={setRegisterData}
+                            loading={loading}
+                            setLoading={setLoading}
+                            togglePasswordVisibility={togglePasswordVisibility}
+                        />
+                    )}
+                    {isForgotPassword && (
+                        <ForgotPasswordForm
+                            handleInputChange={(e) => handleInputChange(e, setEmailData)}
+                            emailData={emailData}
+                            setLoading={setLoading}
+                            toggleForgotPassword={toggleForgotPassword}
+                        />
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
                     )}
                 </div>
             </div>
@@ -291,7 +364,11 @@ const Auth = () => {
                 {/* DIALOGO REGISTRAR */}
                 <RegisterDialog onClick={handleSignUpClick} />
                 {/* DIALOGO INICIO SESION */}
+<<<<<<< HEAD
                 <LoginDialog onClick={handleSignInClick}/>
+=======
+                <LoginDialog onClick={handleSignInClick} />
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
             </div>
         </div>
     )

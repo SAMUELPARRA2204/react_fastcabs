@@ -65,7 +65,7 @@ const Index = () => {
     <>
       <section className="banner">
         <div className="content-banner">
-          <p>TU MEJOR SUPERMERCADO</p>
+          <p>TU MEJOR SUPERMERCADO </p>
           <h2>100% Rápido <br />Ahora sus puertas</h2>
           <Link to="/login">Pide ahora</Link>
         </div>
@@ -81,7 +81,7 @@ const Index = () => {
         </section>
 
         <section className="container top-categories">
-            <h1 className="heading-1">Mejores Categorías</h1>
+            <h1 className="heading-1">Mejores Categorías </h1>
             <div className="container-categories">
                 <div className="card-category category-alimentos">
                     <p>Alimentos</p>

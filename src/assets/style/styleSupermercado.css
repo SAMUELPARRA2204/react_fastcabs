@@ -5,15 +5,24 @@
 	--background-color: #f9f5f0;
 	--dark-color: #151515;
 }
+<<<<<<< HEAD
 
 html{
 	font-size: 62.5%; 
+=======
+html{
+	font-size: 62.5%; 	
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
 }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+<<<<<<< HEAD
     font-family: 'Poppins', sans-serif;  /* Usar Poppins globalmente */
+=======
+    font-family: 'Poppins', sans-serif;  
+>>>>>>> 4405000 (Actualización de estructura y archivos del proyecto)
 }
 
 /* ********************************** */
@@ -55,7 +64,7 @@ html{
 	font-size: 3.3rem;
 }
 
-.content-customer-support {
+.content-customer-support { 
 	display: flex;
 	flex-direction: column;
 }
@@ -625,7 +634,6 @@ html{
 	position: absolute;
 	bottom: 1.5rem;
 	right: -2.5rem;
-
 	display: flex;
 	gap: 0.7rem;
 	z-index: -1;
@@ -1077,16 +1085,16 @@ html{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 5px;
     border-bottom: 1px solid #ddd;
 }
 
 #cart-list button {
-    background-color: #e74c3c;
+    background-color: #c7a17a;
     color: #fff;
     border: none;
     padding: 5px 10px;
-    border-radius: 3px;
+    border-radius: 100px;
     cursor: pointer;
 }
 

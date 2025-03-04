@@ -1,22 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'; 
+import { BrowserRouter as Router } from 'react-router-dom';
 import { CartProvider } from './Context/CartContext';
-import { UserProvider } from './Context/UserContext';
-import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css'; 
 import AppRoutes from './Routes/AppRoutes';
+import { AuthProvider } from './Context/AuthContext';
 
 
 
 function App() {
   return (
-    <UserProvider>
+    <Router>
       <CartProvider>
-        <Router>  
+        <AuthProvider>
           <AppRoutes />
-        </Router>
+        </AuthProvider>
       </CartProvider>
-    </UserProvider>
+    </Router>
   );
 }
 

@@ -11,7 +11,7 @@ const loginDialog = ({ onClick }) => {
         ¡Bienvenido de vuelta a <b>FASTCABS</b>! Estamos encantados de verte de nuevo en nuestra comunidad. Iniciar
         sesión te brinda acceso a una experiencia personalizada y muchas ventajas exclusivas.
         <br />
-        <Link to="/" className={style.inicio}><h5>Volver al inicio</h5></Link>
+        <Link to="/" className={style.inicio}>Volver al inicio</Link>
         <br />
         Inicia sesión con un solo clic y sumérgete en lo que más te gusta en cuestión de segundos.
       </p>
